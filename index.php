@@ -15,15 +15,10 @@ session_start();
  * ...
  * ?p=x => On affiche du message 10x - 10 à (10x - 1)
  */
-$page = (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT) : 0;
+$page = (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT) : 1;
 
-if ($page) {
-    $msg_min = $page * 10 - 10;
-    $msg_max = $page * 10 - 1;
-} else {
-    $msg_min = 0;
-    $msg_max = 9;
-}
+$msg_min = $page * 10 - 10;
+$msg_max = $page * 10 - 1;
 
 /*
  * Connexion à la base de données
@@ -73,5 +68,4 @@ $nb_msg_rep->closeCursor();
 /*
  * Affichage du footer
  */
-require('views/footer.php')
-?>
+require('views/footer.php');
